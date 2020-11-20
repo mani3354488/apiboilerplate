@@ -1,34 +1,15 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server-express');
+const express = require('express');
+
+const typeDefs = require('./src/schema');
+const resolvers = require('./src/resolver');
+
+const PORT = 4000;
+const app = express();
 const server = new ApolloServer({ typeDefs, resolvers });
 
-const typeDefs = gql`
-    type Book {
-        title: String
-        author: String
-    }
+server.applyMiddleware({app});
 
-    type Query {
-        books: [Book]
-    }
-`;
-
-const books = [
-    {
-      title: 'The Awakening',
-      author: 'Kate Chopin',
-    },
-    {
-      title: 'City of Glass',
-      author: 'Paul Auster',
-    },
-];
-
-const resolvers = {
-    Query: {
-      books: () => books,
-    },
-};
-
-server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
-  });
+app.listen({ port: PORT }, () => 
+    console.log('http://localhost:4000${server.graphqlPath}')
+)
