@@ -25,4 +25,4 @@ const resolvers = {
             return models.Recipe.create({ userId, title, ingredients, direction })
         },
     }
-}
+};

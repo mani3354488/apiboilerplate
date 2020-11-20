@@ -27,4 +27,4 @@ const typeDef = gql`
         createUser(name: String!, email: String!, password: String!): User!
         createRecipe(userId: Int!, title: String!, direction: String!, ingredients: String!): Recipe! 
     }
-`
+`;
