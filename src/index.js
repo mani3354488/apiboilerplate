@@ -4,7 +4,7 @@ import {
     gql
 } from 'apollo-server-express';
 import typeDefs from './graphql/schema';
-import resolvers from './graphql/resolvers';
+import resolvers from './graphql/resolver';
 import db from './db';
 
 import faker from 'faker';
